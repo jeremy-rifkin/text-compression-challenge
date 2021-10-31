@@ -16,8 +16,8 @@ def char_to_i(c):
 
 def main():
 	# conditional probability tables
-	# indices 0-25 are letters, 26 is null
-	tables = make_2d(26, 27)
+	# indices 0-25 are letters, 26 is null terminator / space
+	tables = make_2d(27, 27)
 	# read content
 	with open(source, "r") as f:
 		content = f.read().split(" ")
@@ -28,6 +28,9 @@ def main():
 			i = char_to_i(c)
 			tables[last][i] += 1
 			last = i
+		# null terminator / space
+		c = ' '
+		tables[last][char_to_i(c)] += 1
 	# output for C++
 	print("{")
 	for table in tables:
